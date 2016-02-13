@@ -33,9 +33,10 @@ public class KorTextConverter {
         private static final char[] specialList = {'~','`','!','@','#','$','%','^','&','*','(',')','_','-','=','+','{','[','}',']',
             '|','"',':',';',',','<','>','.','?','/',' '};
         private static final char[] numList = {'0','1','2','3','4','5','6','7','8','9'};
-        private static final int[] specialAscii = {12000,12001,12002,12003,12004,12005,12006,12007,12008,12009,12010,12011,12012,12013,12014,
-        12015,12016,12017,12018,12019,12020,12021,12022,12023,12024,12025,12026,12027,12028,12029,12030};
-        private static final int[] numAscii = {12031,12032,12033,12034,12035,12036,12037,12038,12039,12040};
+        private static final int[] specialAscii = {12000,22001,32002,42003,82004,62005,52006,42007,32008,22009,92010,62011,52012,52013,42014,
+        22015,22016,72017,62018,22019,52020,52021,72022,22023,72024,62025,22026,82027,52028,42029,82030};
+        private static final int[] numAscii = {52031,82032,93033,52034,32035,22036,82037,92038,62039,42040};
+    
 	public KorTextConverter(String str){
 		/**
 		 * Constructor for KorTextConverter
@@ -56,7 +57,7 @@ public class KorTextConverter {
 		char[] tempList = text.toCharArray();
 		ArrayList<String> finalList = new ArrayList<>();
 		for(int i = 0; i < tempList.length; i++){
-			if(StringUtils.isAlpha(String.valueOf(tempList[i]))){ // if a character is alphabetic
+			if(StringUtils.isAlpha(String.valueOf(tempList[i])) && Character.isLowerCase(tempList[i])){ // if a character is alphabetic lowercase
                             int pos1 = getArrayIndex(tempList[i], 1);
                             // Add Korean ASCII value of tempList[i] to finalList
                             finalList.add(Integer.toString((int)korList[pos1]));

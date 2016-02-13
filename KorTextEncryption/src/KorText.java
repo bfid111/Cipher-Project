@@ -23,7 +23,8 @@
 public class KorText {
 	
 	public static void main(String[] args){
-		KorTextConverter sample = new KorTextConverter("     asdfadsfadsf12334123132!@#!@#!@zxcvcxvzxcvcxzvxzcv   ");
+		KorTextConverter sample = new KorTextConverter("This is a test String Number 36 #### 365 asdfljkasdlfladskj");
+                // output= 126131263112625125961203012625125961203012609120301261312599125961261312030125961261312593126251263612622
 		sample.convert();
                 String temp = "";
 		String a = sample.returnConverted();
