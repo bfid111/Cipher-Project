@@ -26,14 +26,16 @@ public class KorTextConverter {
 	private static String text;
 	private static String convertedString = "";
 	// Korean Alphabet
-	private static char[] korList = {'げ','じ','ぇ','ぁ','さ','に','づ','ち','だ','つ',
+	private static final char[] korList = {'げ','じ','ぇ','ぁ','さ','に','づ','ち','だ','つ',
 				'け','い','し','ぉ','ぞ','で','っ','た','び','せ','ぜ','ず','そ','ば','ぬ','ぱ'};
-	private static char[] engList = {'q','w','e','r','t','y','u','i','o','p',
+	private static final char[] engList = {'q','w','e','r','t','y','u','i','o','p',
 			'a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'};
-        private static char[] specialList = {'~','`','!','@','#','$','%','^','&','*','(',')','_','-','=','+','{','[','}',']',
+        private static final char[] specialList = {'~','`','!','@','#','$','%','^','&','*','(',')','_','-','=','+','{','[','}',']',
             '|','"',':',';',',','<','>','.','?','/',' '};
-        private static int[] specialAscii = {12000,12001,12002,12003,12004,12005,12006,12007,12008,12009,12010,12011,12012,12013,12014,
+        private static final char[] numList = {'0','1','2','3','4','5','6','7','8','9'};
+        private static final int[] specialAscii = {12000,12001,12002,12003,12004,12005,12006,12007,12008,12009,12010,12011,12012,12013,12014,
         12015,12016,12017,12018,12019,12020,12021,12022,12023,12024,12025,12026,12027,12028,12029,12030};
+        private static final int[] numAscii = {12031,12032,12033,12034,12035,12036,12037,12038,12039,12040};
 	public KorTextConverter(String str){
 		/**
 		 * Constructor for KorTextConverter
@@ -54,21 +56,27 @@ public class KorTextConverter {
 		char[] tempList = text.toCharArray();
 		ArrayList<String> finalList = new ArrayList<>();
 		for(int i = 0; i < tempList.length; i++){
-			if(StringUtils.isAlpha(String.valueOf(tempList[i])) == true){ // if a character is alphabetic
-					int pos = getArrayIndex(tempList[i]);
-					// Add Korean ASCII value of tempList[i] to finalList
-					finalList.add(Integer.toString((int)korList[pos]));
-                                        if(Math.abs(i-tempList.length) > 1){
-					//finalList.add(",");
-                                        }   
-			} else {
-				// If a character is not alphabetic
-				finalList.add(Integer.toString((int)tempList[i]));
-				if(Math.abs(i-tempList.length) > 1){
-					// Add comma between characters
-					//finalList.add(",");
-				}
-			}
+			if(StringUtils.isAlpha(String.valueOf(tempList[i]))){ // if a character is alphabetic
+                            int pos1 = getArrayIndex(tempList[i], 1);
+                            // Add Korean ASCII value of tempList[i] to finalList
+                            finalList.add(Integer.toString((int)korList[pos1]));
+                            if(Math.abs(i-tempList.length) > 1){
+                            //finalList.add(",");
+                            }   
+			} else if(StringUtils.isNumeric(String.valueOf(tempList[i]))) { //if numeric 
+                            int pos2 = getArrayIndex(tempList[i], 2);
+                            finalList.add(Integer.toString((int)numAscii[pos2]));
+                            if(Math.abs(i-tempList.length) > 1){
+                            // Add comma between characters
+                            //finalList.add(",");
+                            }
+			} else { // special characters
+                            int pos3 = getArrayIndex(tempList[i], 3);
+                            finalList.add(Integer.toString((int)specialAscii[pos3]));
+                            if(Math.abs(i-tempList.length) > 1){
+                            //finalList.add(",");
+                            }   
+                        }
 		}
 		for(int i  = 0; i < finalList.size(); i++){
                     convertedString += finalList.get(i);
@@ -81,18 +89,38 @@ public class KorTextConverter {
 		 */
 		return convertedString;
 	}
-	private int getArrayIndex(char character) {
+	private int getArrayIndex(char character, int mode) {
 		/**
 		 * Returns an index of an alphabetic char inside engList
 		 * @param character. a character to find position inside engList
 		 * @see engList
 		 * @return i or 0 meaning none
 		 */
-		for(int i  = 0; i < engList.length; i++){
-			if(character == engList[i]){
+                switch(mode){
+                    case 1:
+                        for(int i  = 0; i < engList.length; i++){
+                            if(character == engList[i]){
 				return i;
-			}
-		}
-		return 0;
-	}
+                            }
+                        }
+                    break;
+                    case 3:
+                        for(int i = 0; i < specialList.length; i++){
+                            if(character == specialList[i]){
+                                return i;
+                            }
+                        }
+                    break;
+                    case 2:
+                        for(int i = 0; i < numList.length; i++){
+                            if(character == numList[i]){
+                                return i;
+                            }
+                        }
+                    break;
+                    default :
+                        break;
+                }
+            return 0; 
+        }
 }
