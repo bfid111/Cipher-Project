@@ -30,6 +30,10 @@ public class KorTextConverter {
 				'け','い','し','ぉ','ぞ','で','っ','た','び','せ','ぜ','ず','そ','ば','ぬ','ぱ'};
 	private static char[] engList = {'q','w','e','r','t','y','u','i','o','p',
 			'a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'};
+        private static char[] specialList = {'~','`','!','@','#','$','%','^','&','*','(',')','_','-','=','+','{','[','}',']',
+            '|','"',':',';',',','<','>','.','?','/',' '};
+        private static int[] specialAscii = {12000,12001,12002,12003,12004,12005,12006,12007,12008,12009,12010,12011,12012,12013,12014,
+        12015,12016,12017,12018,12019,12020,12021,12022,12023,12024,12025,12026,12027,12028,12029,12030};
 	public KorTextConverter(String str){
 		/**
 		 * Constructor for KorTextConverter
@@ -48,24 +52,26 @@ public class KorTextConverter {
 		 * @return void 
 		 */
 		char[] tempList = text.toCharArray();
-		ArrayList<String> finalList = new ArrayList<String>();
+		ArrayList<String> finalList = new ArrayList<>();
 		for(int i = 0; i < tempList.length; i++){
 			if(StringUtils.isAlpha(String.valueOf(tempList[i])) == true){ // if a character is alphabetic
 					int pos = getArrayIndex(tempList[i]);
 					// Add Korean ASCII value of tempList[i] to finalList
 					finalList.add(Integer.toString((int)korList[pos]));
-					finalList.add(",");
+                                        if(Math.abs(i-tempList.length) > 1){
+					//finalList.add(",");
+                                        }   
 			} else {
 				// If a character is not alphabetic
 				finalList.add(Integer.toString((int)tempList[i]));
 				if(Math.abs(i-tempList.length) > 1){
 					// Add comma between characters
-					finalList.add(",");
+					//finalList.add(",");
 				}
 			}
 		}
 		for(int i  = 0; i < finalList.size(); i++){
-			convertedString += finalList.get(i);
+                    convertedString += finalList.get(i);
 		}
 	}
 	public String returnConverted(){
