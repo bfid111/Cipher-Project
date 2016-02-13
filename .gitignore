@@ -45,3 +45,10 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/KorText Encryption/nbproject/private/
+/KorText Encryption/src/nbproject/private/
+/KorText Encryption/src/build/
+/KorText Encryption/src/dist/
+/KorTextEncryption/nbproject/private/
+/KorTextEncryption/build/
+/KorTextEncryption/dist/

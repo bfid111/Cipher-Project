@@ -1,0 +1,29 @@
+This project is created for testing purposes.
+No security breach testing has been done.
+Please feel free contact ybs5050@psu.edu if you have any question.
+Thanks, 
+Youngmin
+
+----------------------------------------------------------------------
+Explanation
+
+1. Converts a given English text into Korean ASCII correspondingly.
+	ex) Letter 'H' will be converted to an ASCII value of a
+	Korean letter that is on the same key of a Korean keyboard, which is "คว"
+	Different languages have different ASCII values despite being
+	on a same key on a keyboard. 
+2. With a cipher, encrypts the converted text.
+
+This way,  it is theoretically impossible for someone to decrypt
+the encrypt the text unless the person knows that this uses such
+encryption method. 
+
+Example :
+INPUT = "hello"
+Converted Text = 1263112599126431264312624
+Then, the converted text will be encrypted using a cipher.
+
+
+
+
+
