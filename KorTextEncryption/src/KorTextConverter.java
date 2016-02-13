@@ -16,6 +16,7 @@ public class KorTextConverter {
 		 */
 		text = str.toLowerCase();
 	}
+        
 	public void convert(){
 		/**
 		 * Converts text to a Korean ASCII 
