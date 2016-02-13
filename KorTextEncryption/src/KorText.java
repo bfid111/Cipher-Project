@@ -5,5 +5,6 @@ public class KorText {
 		KorTextConverter sample = new KorTextConverter("hello123");
 		sample.convert();
 		System.out.println(sample.returnConverted());
+                
 	}
 }
