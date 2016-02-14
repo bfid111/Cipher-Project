@@ -22,6 +22,8 @@ Example :
 INPUT = "hello"
 Converted Text = 1263112599126431264312624
 Then, the converted text will be encrypted using a cipher.
+TODO:
+Add more languages 
 
 
 
