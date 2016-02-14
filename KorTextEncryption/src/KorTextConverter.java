@@ -34,8 +34,8 @@ public class KorTextConverter {
             '|','"',':',';',',','<','>','.','?','/',' '};
         private static final char[] numList = {'0','1','2','3','4','5','6','7','8','9'};
         private static final int[] specialAscii = {12000,22001,32002,42003,82004,62005,52006,42007,32008,22009,92010,62011,52012,52013,42014,
-        22015,22016,72017,62018,22019,52020,52021,72022,22023,72024,62025,22026,82027,52028,42029,82030};
-        private static final int[] numAscii = {52031,82032,93033,52034,32035,22036,82037,92038,62039,42040};
+        22015,22016,72017,62018,22019,52020,52021,12022,22023,72024,62025,22026,82027,52028,42029,82030};
+        private static final int[] numAscii = {52031,82032,83033,52034,32035,22036,12037,12038,62039,42040};
     
 	public KorTextConverter(String str){
 		/**
@@ -79,9 +79,9 @@ public class KorTextConverter {
                             }   
                         }
 		}
-		for(int i  = 0; i < finalList.size(); i++){
-                    convertedString += finalList.get(i);
-		}
+                finalList.stream().forEach((temp) -> {
+                    convertedString += temp;
+            });
 	}
 	public String returnConverted(){
 		/**
