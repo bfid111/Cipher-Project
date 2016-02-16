@@ -4,7 +4,8 @@ import java.awt.Toolkit;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.plaf.metal.MetalLookAndFeel;
-import de.javasoft.plaf.synthetica.Synthetica
+import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel;
 
 /*
  * Copyright (C) 2016 Youngmin ybs5050@psu.edu
@@ -94,27 +95,13 @@ public class Main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        /*
-           try {
-                UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");             
-                } catch (Exception e) {
-                System.err.println("Look and feel not set.");
-                }*/
-        try {
-    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-        if ("Metal".equals(info.getName())) {
-            UIManager.setLookAndFeel(info.getClassName());
-            break;
+        try {// select Look and Feel
+        //UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+        UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel");// SynThetica Theme 
         }
-    }
-} catch (Exception e) {
-    // If Nimbus is not available, you can set the GUI to another look and feel.
-}
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
         //</editor-fold>
         //</editor-fold>
         /* Create and display the form */
@@ -124,7 +111,7 @@ public class Main extends javax.swing.JFrame {
                 frame.setVisible(true);
                 Logger console = new Logger();
                 console.setVisible(true);
-                console.setLocation(frame.getX() + frame.getWidth(), frame.getY());
+                console.setLocation(frame.getX() + frame.getWidth()-1, frame.getY());
                 System.out.println("hello");
             }
         });
