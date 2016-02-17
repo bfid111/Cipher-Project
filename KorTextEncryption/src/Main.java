@@ -1,11 +1,5 @@
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.plaf.metal.MetalLookAndFeel;
-import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
-import de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel;
 
 /*
  * Copyright (C) 2016 Youngmin ybs5050@psu.edu
@@ -37,7 +31,6 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,9 +39,11 @@ public class Main extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jTextField2 = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,16 +71,29 @@ public class Main extends javax.swing.JFrame {
         setTitle("KorText");
         setIconImages(null);
 
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("false"), this, org.jdesktop.beansbinding.BeanProperty.create("resizable"));
+        bindingGroup.addBinding(binding);
+
+        jTextField2.setText("jTextField2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 558, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(625, Short.MAX_VALUE)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(236, Short.MAX_VALUE))
         );
+
+        bindingGroup.bind();
 
         pack();
         setLocationRelativeTo(null);
@@ -98,7 +106,7 @@ public class Main extends javax.swing.JFrame {
         try {// select Look and Feel
         //UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
         UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel");// SynThetica Theme 
-        }
+        } //http://www.javasoft.de/synthetica/themes/ <- Theme Source
         catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -109,9 +117,7 @@ public class Main extends javax.swing.JFrame {
             public void run() {
                 Main frame = new Main();
                 frame.setVisible(true);
-                Logger console = new Logger();
-                console.setVisible(true);
-                console.setLocation(frame.getX() + frame.getWidth()-1, frame.getY());
+                
                 System.out.println("hello");
             }
         });
@@ -119,5 +125,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextField2;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
