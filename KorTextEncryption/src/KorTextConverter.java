@@ -45,6 +45,9 @@ public class KorTextConverter {
 		 */
 		text = str.toLowerCase();
 	}
+        public static void changeText(String str){
+            text = str.toLowerCase();
+        }
 	public void convert(){
 		/**
 		 * Converts text to a Korean ASCII 
@@ -88,7 +91,10 @@ public class KorTextConverter {
 		 * Returns a converted String 
 		 * @return convertedString
 		 */
-		return convertedString;
+                String a = convertedString;
+                convertedString = "";
+		return a;
+                
 	}
 	private int getArrayIndex(char character, int mode) {
 		/**
