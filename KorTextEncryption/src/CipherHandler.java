@@ -59,6 +59,12 @@ public class CipherHandler {
                 decryptText += splitted1;
             }
         }
+        public static void changeKey(String str){
+            keyText = str;
+        }
+        public static void changeText(String str){
+            plainText = str;
+        }
         private static String[] stringSplitter(String s, int interval) {
             String[] result = new String[s.length()/interval];
             int j = 0;
@@ -71,7 +77,9 @@ public class CipherHandler {
             return result;
         }
         public String returnEncrypted(){
-            return encryptText;
+            String a = encryptText;
+            encryptText = "";
+            return a;
         }
         public String returnDecrypted(){
             return decryptText;

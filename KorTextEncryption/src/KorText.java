@@ -21,7 +21,6 @@
  * @author Youngmin ybs5050@psu.edu
  */
 public class KorText {
-	
 	public static void main(String[] args){
 		KorTextConverter sample = new KorTextConverter("SooooooooasfdsaaxvzcvxzadsFFsadfAFASFasdfSDAFSdfADFSGDFSAGADSGFADSFADSFADSFASDooo");
                 // output= 
@@ -42,15 +41,14 @@ public class KorText {
                 cipher.encrypt();
                 String en = cipher.returnEncrypted();
                 System.out.println("Encrypted = " + en);
-                b = splitStringEvery( cipher.returnEncrypted(),5);
+                b = splitStringEvery( en,5);
                 int bsum = 0;
                 CipherHandler decipher = new CipherHandler(en,"keywithlongcharat");
                 decipher.decrypt();
-                System.out.println("Decrypted = " + decipher.returnDecrypted());
-                boolean he = a.equals(decipher.returnDecrypted());
-                System.out.println(he);
-                
-              
+                String de = decipher.returnDecrypted();
+                System.out.println("Decrypted = " + de);
+                boolean he = a.equals(de);
+                System.out.println(he);    
 	}
         public static String[] splitStringEvery(String s, int interval) {
             int arrayLength = (int) Math.ceil(((s.length() / (double)interval)));
