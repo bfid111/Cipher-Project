@@ -62,10 +62,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="625" max="32767" attributes="0"/>
-              <Component id="jTextField2" min="-2" pref="243" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane4" min="-2" pref="295" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="316" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" pref="306" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="Encrypt" min="-2" pref="321" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton2" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="keyArea" alignment="0" max="32767" attributes="0"/>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,17 +86,116 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField2" min="-2" pref="386" max="-2" attributes="0"/>
-              <EmptySpace pref="236" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane2" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="jScrollPane4" alignment="0" pref="432" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="keyArea" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Encrypt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JButton" name="Encrypt">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField2"/>
+        <Property name="text" type="java.lang.String" value="Encrypt"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="EncryptMousePressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="keyArea">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="                                                                                                 Enter a Key"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="keyAreaMouseClicked"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="decryptArea">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="Enter a Text to Decrypt"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="decryptAreaMouseClicked"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Decrypt"/>
       </Properties>
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="inputArea">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="Enter a Text to Encrypt"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="inputAreaMousePressed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+      <Properties>
+        <Property name="wheelScrollingEnabled" type="boolean" value="false"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="logArea">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
+            <Property name="lineWrap" type="boolean" value="true"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="wrapStyleWord" type="boolean" value="true"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseWheelMoved" listener="java.awt.event.MouseWheelListener" parameters="java.awt.event.MouseWheelEvent" handler="logAreaMouseWheelMoved"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

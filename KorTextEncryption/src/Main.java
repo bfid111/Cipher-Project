@@ -1,4 +1,5 @@
 
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /*
@@ -24,6 +25,8 @@ import javax.swing.UIManager;
  * @author Youngmin ybs5050@psu.edu
  */
 public class Main extends javax.swing.JFrame {
+    // instance vars
+    private static int pressCount = 1;
 
     /**
      * Creates new form Frame
@@ -43,7 +46,15 @@ public class Main extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        Encrypt = new javax.swing.JButton();
+        keyArea = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        decryptArea = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        inputArea = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        logArea = new javax.swing.JTextArea();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,23 +85,93 @@ public class Main extends javax.swing.JFrame {
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("false"), this, org.jdesktop.beansbinding.BeanProperty.create("resizable"));
         bindingGroup.addBinding(binding);
 
-        jTextField2.setText("jTextField2");
+        Encrypt.setText("Encrypt");
+        Encrypt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                EncryptMousePressed(evt);
+            }
+        });
+
+        keyArea.setText("                                                                                                 Enter a Key");
+        keyArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                keyAreaMouseClicked(evt);
+            }
+        });
+
+        decryptArea.setColumns(20);
+        decryptArea.setRows(5);
+        decryptArea.setText("Enter a Text to Decrypt");
+        decryptArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                decryptAreaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(decryptArea);
+
+        jButton2.setText("Decrypt");
+
+        inputArea.setColumns(20);
+        inputArea.setRows(5);
+        inputArea.setText("Enter a Text to Encrypt");
+        inputArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                inputAreaMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(inputArea);
+
+        jScrollPane4.setWheelScrollingEnabled(false);
+
+        logArea.setEditable(false);
+        logArea.setColumns(20);
+        logArea.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        logArea.setLineWrap(true);
+        logArea.setRows(5);
+        logArea.setToolTipText("");
+        logArea.setWrapStyleWord(true);
+        logArea.setBorder(null);
+        logArea.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                logAreaMouseWheelMoved(evt);
+            }
+        });
+        jScrollPane4.setViewportView(logArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(625, Short.MAX_VALUE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Encrypt, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(keyArea)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(keyArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Encrypt)
+                    .addComponent(jButton2))
+                .addGap(80, 80, 80))
         );
 
         bindingGroup.bind();
@@ -98,6 +179,38 @@ public class Main extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void keyAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keyAreaMouseClicked
+          keyArea.setText("");// Set blank when clicked
+    }//GEN-LAST:event_keyAreaMouseClicked
+
+    private void EncryptMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EncryptMousePressed
+          if("Enter a String to Encrypt ".equals(inputArea.getText()) || "".equals(keyArea.getText()) || "".equals(inputArea.getText())){
+                JOptionPane.showMessageDialog(null, "Check Your Text Box!");
+            }else{
+                KorTextConverter KorText1 = new KorTextConverter(inputArea.getText());
+                KorText1.convert();
+                CipherHandler Cipher1 = new CipherHandler(KorText1.returnConverted(),keyArea.getText().trim());
+                Cipher1.encrypt();
+                String encrypted = Cipher1.returnEncrypted();
+                logArea.append("Cipher # " + pressCount + " =  "+ encrypted + "\n");   
+                pressCount++;
+                inputArea.setText("Enter a Text to Encrypt");
+                keyArea.setText("                                                                                                 Enter a Key");
+            }
+    }//GEN-LAST:event_EncryptMousePressed
+
+    private void decryptAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decryptAreaMouseClicked
+        decryptArea.setText("");        // Set blank when clicked
+    }//GEN-LAST:event_decryptAreaMouseClicked
+
+    private void inputAreaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputAreaMousePressed
+        inputArea.setText("");        // TODO add your handling code here:
+    }//GEN-LAST:event_inputAreaMousePressed
+
+    private void logAreaMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_logAreaMouseWheelMoved
+
+    }//GEN-LAST:event_logAreaMouseWheelMoved
 
     /**
      * @param args the command line arguments
@@ -123,9 +236,17 @@ public class Main extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Encrypt;
+    private javax.swing.JTextArea decryptArea;
+    private javax.swing.JTextArea inputArea;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextField keyArea;
+    public static javax.swing.JTextArea logArea;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
