@@ -1,4 +1,17 @@
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -55,7 +68,7 @@ public class Main extends javax.swing.JFrame {
         inputArea = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         logArea = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,27 +145,24 @@ public class Main extends javax.swing.JFrame {
         logArea.setToolTipText("");
         logArea.setWrapStyleWord(true);
         logArea.setBorder(null);
-        logArea.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
-            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
-                logAreaMouseWheelMoved(evt);
-            }
-        });
         jScrollPane4.setViewportView(logArea);
 
-        jButton1.setText("jButton1");
+        saveButton.setText("Save");
+        saveButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                saveButtonMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jButton1)))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -173,17 +183,13 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane1)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(keyArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Encrypt)
-                            .addComponent(jButton2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(keyArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Encrypt)
+                    .addComponent(jButton2)
+                    .addComponent(saveButton))
                 .addGap(80, 80, 80))
         );
 
@@ -221,10 +227,26 @@ public class Main extends javax.swing.JFrame {
         inputArea.setText("");        // TODO add your handling code here:
     }//GEN-LAST:event_inputAreaMousePressed
 
-    private void logAreaMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_logAreaMouseWheelMoved
-
-    }//GEN-LAST:event_logAreaMouseWheelMoved
-
+    private void saveButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMousePressed
+        try {
+            saveFile();        // TODO add your handling code here:
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_saveButtonMousePressed
+    private void saveFile() throws FileNotFoundException{
+        String temp = logArea.getText();
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd HHmmss");
+        Calendar cal = Calendar.getInstance();
+        File data = new File(dateFormat.format(cal.getTime()) + ".txt");
+        PrintWriter writer = new PrintWriter(data);
+     //   String[] splitted = temp.split("    ");
+     //   for (String splitted1 : splitted) {
+      //      writer.write(splitted1 + "\n");
+    //    }
+        writer.write(temp);
+        writer.close();  
+    }
     /**
      * @param args the command line arguments
      */
@@ -252,7 +274,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton Encrypt;
     private javax.swing.JTextArea decryptArea;
     private javax.swing.JTextArea inputArea;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -261,6 +282,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField keyArea;
     public static javax.swing.JTextArea logArea;
+    private javax.swing.JButton saveButton;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
