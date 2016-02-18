@@ -1,2 +1,3 @@
 [2/12/16] : Created KorTextConverter
 [2/13/16] : Added GUI components, CipherHandler 
+[2/18/16] : Added File Output
