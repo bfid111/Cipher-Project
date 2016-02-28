@@ -15,7 +15,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
 /**
  *
  * @author Youngmin ybs5050@psu.edu
@@ -25,34 +24,38 @@ public class CipherHandler {
         private static String encryptText = "";
         private static String decryptText = "";
         private static String keyText;
-        private static int keySum = 0;
         private static String[] splitted; 
         public CipherHandler(String str, String key){
             CipherHandler.plainText = str;
             CipherHandler.keyText = key;
         }
         public static void encrypt(){
-            keySum = 0;
+            int keySum = 0;
             for(int i = 0; i < keyText.length(); i++){
                 keySum += (int)keyText.charAt(i);
             }
+            System.out.println(keySum);
             CipherHandler.splitted = stringSplitter(plainText,5);
             for(int a = 0; a < splitted.length; a++){
                 int tempConverted = Integer.valueOf(splitted[a]) + (keySum);
+                System.out.print( splitted[a]);
                 splitted[a] = Integer.toString(tempConverted);
             }
             for (String splitted1 : splitted) {
                 encryptText += splitted1;
             }
+            System.out.println();
         }
         public static void decrypt(){
-            keySum = 0;
+            int keySum = 0;
             for(int i = 0; i < keyText.length(); i++){
                 keySum += (int)keyText.charAt(i);
             }
+            System.out.println(keySum);
             CipherHandler.splitted = stringSplitter(plainText,5);
             for(int a = 0; a < splitted.length; a++){
-                int tempConverted = Integer.valueOf(splitted[a]) - (keySum);
+                int tempConverted = Integer.valueOf(splitted[a]) - (keySum); // shift decrypt 
+             //   System.out.println( splitted[a]);
                 splitted[a] = Integer.toString(tempConverted);
             }
             for (String splitted1 : splitted) {
@@ -82,6 +85,8 @@ public class CipherHandler {
             return a;
         }
         public String returnDecrypted(){
-            return decryptText;
+            String b = decryptText;
+            decryptText = "";
+            return b;
         }
 }
