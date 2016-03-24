@@ -86,6 +86,25 @@ public class KorTextConverter {
                     convertedString += temp;
             });
 	}
+        public String devert(String text1){
+                String alpha = "";
+                for(int c = 0; c < korList.length; c++) {
+                    if(text1.equals(Integer.toString((int)korList[c]))){
+                       return Character.toString(Character.toUpperCase(engList[c]));
+                    }
+                }
+                for(int a = 0; a < numAscii.length; a++) {
+                    if(text1.equals(Integer.toString(numAscii[a]))) {
+                        return Character.toString((char)numList[a]);
+                    }
+                }
+                for(int b = 0; b < specialAscii.length; b++) {
+                    if(text1.equals(Integer.toString(specialAscii[b]))) {
+                        return Character.toString((char)specialList[b]);
+                    }
+                }
+                return "";
+        }
 	public String returnConverted(){
 		/**
 		 * Returns a converted String 
@@ -93,8 +112,7 @@ public class KorTextConverter {
 		 */
                 String a = convertedString;
                 convertedString = "";
-		return a;
-                
+		return a;   
 	}
 	private int getArrayIndex(char character, int mode) {
 		/**
