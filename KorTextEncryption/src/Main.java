@@ -40,7 +40,6 @@ import javax.swing.UIManager;
 public class Main extends javax.swing.JFrame {
     // instance vars
     private static int pressCount = 1;
-
     /**
      * Creates new form Frame
      */
@@ -63,7 +62,7 @@ public class Main extends javax.swing.JFrame {
         keyArea = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         decryptArea = new javax.swing.JTextArea();
-        jButton2 = new javax.swing.JButton();
+        decryptButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         inputArea = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -116,6 +115,7 @@ public class Main extends javax.swing.JFrame {
         decryptArea.setColumns(20);
         decryptArea.setRows(5);
         decryptArea.setText("Enter a Text to Decrypt");
+        decryptArea.setWrapStyleWord(true);
         decryptArea.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 decryptAreaMouseClicked(evt);
@@ -123,7 +123,12 @@ public class Main extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(decryptArea);
 
-        jButton2.setText("Decrypt");
+        decryptButton.setText("Decrypt");
+        decryptButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                decryptButtonMouseClicked(evt);
+            }
+        });
 
         inputArea.setColumns(20);
         inputArea.setRows(5);
@@ -172,7 +177,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Encrypt, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(decryptButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(keyArea)))
         );
         layout.setVerticalGroup(
@@ -188,7 +193,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Encrypt)
-                    .addComponent(jButton2)
+                    .addComponent(decryptButton)
                     .addComponent(saveButton))
                 .addGap(80, 80, 80))
         );
@@ -234,6 +239,22 @@ public class Main extends javax.swing.JFrame {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_saveButtonMousePressed
+
+    private void decryptButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decryptButtonMouseClicked
+         if("Enter a String to Decrypt ".equals(decryptArea.getText()) || "".equals(keyArea.getText()) || "".equals(decryptArea.getText())){
+                JOptionPane.showMessageDialog(null, "Check Your Text Box!");
+            }else{
+              //  KorTextConverter KorText1 = new KorTextConverter(inputArea.getText());
+            //    KorText1.convert();
+                CipherHandler Cipher1 = new CipherHandler(decryptArea.getText(),keyArea.getText().trim());
+                Cipher1.decrypt();
+                String decrypted = Cipher1.returnDecrypted();
+                logArea.append("Decrypted Cipher # " + pressCount + " =  "+ decrypted + "\n");   
+                pressCount++;
+                decryptArea.setText("Enter a Text to Decrypt");
+                keyArea.setText("                                                                                                 Enter a Key");
+            }
+    }//GEN-LAST:event_decryptButtonMouseClicked
     private void saveFile() throws FileNotFoundException{
         String temp = logArea.getText();
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd HHmmss");
@@ -273,8 +294,8 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Encrypt;
     private javax.swing.JTextArea decryptArea;
+    private javax.swing.JButton decryptButton;
     private javax.swing.JTextArea inputArea;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
