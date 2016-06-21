@@ -1,7 +1,7 @@
 
 /**
  *
- * @author Youngmin ybs5050@psu.edu
+ * @author ybs5050
  */
 public class CipherHandler {
         private static String plainText; 
